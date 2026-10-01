@@ -1,0 +1,31 @@
+# Built binaries
+/why-slow
+/why-slow.exe
+/dist/
+
+# Go build and test artifacts
+*.test
+*.out
+*.prof
+coverage.txt
+coverage.html
+
+# Golden file update temp files (e.g. from -update runs)
+*.golden.tmp
+*.golden.new
+*.actual
+
+# Editor cruft
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencies are intentionally not vendored.
+# The module is standard-library only; see README.
+/vendor/

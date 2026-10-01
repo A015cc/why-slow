@@ -1,0 +1,10 @@
+# Line endings are pinned to LF for every text file in the repository.
+#
+# This is not cosmetic. The render package compares generated output against
+# golden files byte for byte, and a Windows checkout with core.autocrlf=true
+# would rewrite those goldens to CRLF. The comparison would then fail on
+# Windows while passing everywhere else, which is the worst kind of CI failure
+# to debug: the platform you are least likely to be sitting at.
+* text=auto eol=lf
+
+*.exe binary

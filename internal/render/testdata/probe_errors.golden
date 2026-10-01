@@ -1,0 +1,30 @@
+why-slow 0.1.0
+  target    vps.example.com:443
+  samples   40
+  duration  1.23s
+  started   2026-10-02 15:04:05 UTC
+
+LATENCY  vps.example.com:443 (203.0.113.10)   n=40   p50=152ms   p95=1.15s
+  samples  ▁▁▁▁▁▁▁▇▁▁▁▁▁▁▁▁▁▁▁▇▁▁▁▁▁▁▁▁▇▁▁▁▁▁▁▁▁█▁▁
+  cluster A   151.5ms   n=36   IQR 1.5ms    <- baseline RTT
+  cluster B   1.15s   n=4   IQR 0.5ms    <- baseline + 1.00s (ladder rung 1)
+  consistent with a SYN retransmit (handshake loss), not server slowness
+  implied SYN loss 10% (4/40, 95% CI 4-23%)   confidence: medium
+
+FINDINGS
+  [!] Handshake stalls look like SYN retransmits   [warning, medium confidence]
+      consistent with a SYN retransmit (handshake loss), not server slowness
+      evidence
+        cluster B: 4 samples, median 1.15s  [tcp.connect]  ▁▄▄█
+      advice
+        -> Re-run with more samples to tighten the loss estimate.
+        -> Check for a middlebox or firewall dropping SYNs along the path.
+
+VERDICT
+  [!] About 10% of handshake attempts needed a retransmit, adding roughly 1s to
+      those connections.
+    primary cause: handshake packet loss
+
+PROBE ERRORS
+  dns   lookup nope.invalid: no such host
+  http  context deadline exceeded
