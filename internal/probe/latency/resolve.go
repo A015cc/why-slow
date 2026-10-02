@@ -111,7 +111,7 @@ func keep(ips []net.IP, pred func(net.IP) bool) []net.IP {
 // pickTargets decides which addresses to actually measure.
 //
 // IPv4 wins the default case. The failures this tool was written for are IPv4
-// failures — a path that eats SYNs, a carrier NAT, a Shanghai-to-Dallas link
+// failures — a path that eats SYNs, a carrier NAT in front of the host, a long-haul link
 // that retransmits — while on a dual-stack host IPv6 frequently takes an
 // entirely different (and often cleaner) route. Measuring the v6 address by
 // default would hand back a healthy number for a v4 problem, which is worse than
