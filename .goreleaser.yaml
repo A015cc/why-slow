@@ -46,7 +46,7 @@ archives:
       - README.md
       - LICENSE
 
-checksums:
+checksum:
   name_template: checksums.txt
   algorithm: sha256
 
